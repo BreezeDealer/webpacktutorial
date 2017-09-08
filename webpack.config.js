@@ -10,7 +10,7 @@ var cssDev = ["style-loader", "css-loader?sourceMap", "sass-loader"];
 var cssProd = ExtractTextPlugin.extract({
     fallback: "style-loader",
     use: "css-loader!sass-loader",
-    publicPath: "./"
+    publicPath: "../"
 })
 
 var cssConfig = isProd ? cssProd : cssDev;
@@ -24,7 +24,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "./dist"),
-        filename: "[name].bundle.js"
+        filename: "./js/[name].bundle.js"
     },
     module:{
         rules: [
@@ -87,12 +87,12 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Contact Page',
             hash: true,
-            chunks: ["contact"], //设定特定的chunk
+            chunks: ["contact","bootstrap"], //设定特定的chunk
             filename: "contact.html",
             template: "./src/contact.html"
         }),
         new ExtractTextPlugin({
-            filename: "/css/[name].css",
+            filename: "./css/[name].css",
             disable: !isProd,
             allChunks: true
         }),
