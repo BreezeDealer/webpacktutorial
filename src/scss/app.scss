@@ -1,18 +1,23 @@
+@import '../bootstrap/customizations.scss';
+
 body {
-    text-align: center;
+    //text-align: center;
     //background: #f2f2f2;
-    p {
+    .place{
         //color: red;
         padding: 10px 5px;
         border: 1px solid #dadada;
     }
     .deleted{
         color: indianred;
-        //text-decoration: line-through;
+        text-decoration: line-through;
     }
     .brack{
         padding: 10px 0 10px 41px;
-        background: url(./images/register_success.png) no-repeat 0 0;
+        background: url(../images/register_success.png) no-repeat 0 0;
         text-align: left;
+    }
+    h2{
+        color: $brand-success;
     }
 }

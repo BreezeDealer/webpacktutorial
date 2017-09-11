@@ -1,25 +1,27 @@
-var HtmlWebpackPlugin = require("html-webpack-plugin");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var webpack = require("webpack");
-var path = require("path");
-var bootstrapEntryPoints = require("./webpack.bootstrap.config")
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require("webpack");
+const path = require("path");
+const bootstrapEntryPoints = require("./webpack.bootstrap.config");
+const glob = require("glob-all");
+const PurifyCSSPlugin = require("purifycss-webpack");
 
-var isProd = process.env.NODE_ENV === "production"; //环境是否为产品，产品环境需要分离的css文件
-var cssDev = ["style-loader", "css-loader?sourceMap", "sass-loader"];
+const isProd = process.env.NODE_ENV === "production"; //环境是否为产品，产品环境需要分离的css文件
+const cssDev = ["style-loader", "css-loader?sourceMap", "sass-loader"];
 //ExtractTextPlugin.extrac提取css生成css文件
-var cssProd = ExtractTextPlugin.extract({
+const cssProd = ExtractTextPlugin.extract({
     fallback: "style-loader",
     use: "css-loader!sass-loader",
     publicPath: "../"
 })
 
-var cssConfig = isProd ? cssProd : cssDev;
-var bootstrapConfig = isProd ? bootstrapEntryPoints.prod : bootstrapEntryPoints.dev;
+const cssConfig = isProd ? cssProd : cssDev;
+const bootstrapConfig = isProd ? bootstrapEntryPoints.prod : bootstrapEntryPoints.dev;
 
 module.exports = {
     entry: {
-        app: "./src/app.js",
-        contact: "./src/contact.js",
+        app: "./src/js/index.js",
+        contact: "./src/js/contact.js",
         bootstrap: bootstrapConfig
     },
     output: {
@@ -75,13 +77,13 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Project Demo",
+            title: "React Todo List",
             // minify: {
             //     collapseWhitespace: true
             // },
             hash: true,
             excludeChunks: ["contact"], //排除不必要的chunk
-            template: "./src/index.pug", // Load a custom template (ejs by default)
+            template: "./src/template/index.html", // Load a custom template (ejs by default)
             //filename: "./../index.html" //定义生成的html文件名和存放位置
         }),
         new HtmlWebpackPlugin({
@@ -89,7 +91,7 @@ module.exports = {
             hash: true,
             chunks: ["contact","bootstrap"], //设定特定的chunk
             filename: "contact.html",
-            template: "./src/contact.html"
+            template: "./src/template/contact.html"
         }),
         new ExtractTextPlugin({
             filename: "./css/[name].css",
@@ -97,6 +99,16 @@ module.exports = {
             allChunks: true
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin()
+        new webpack.NamedModulesPlugin(),
+        //make sure this is after ExtractTextPlugin
+        /*new PurifyCSSPlugin({
+            //Give paths to parse for rules. These should be absoulte!
+            paths: glob.sync([
+                path.join(__dirname, "src/*.js"),
+                path.join(__dirname, "src/*.html"),
+                path.join(__dirname, "src/*.pug")
+            ]),
+            //minimize: true
+        })*/
     ]
 }
