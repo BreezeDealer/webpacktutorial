@@ -22,6 +22,7 @@ module.exports = {
     entry: {
         app: "./src/js/index.js",
         contact: "./src/js/contact.js",
+        table: "./src/js/table.js",
         bootstrap: bootstrapConfig
     },
     output: {
@@ -82,7 +83,7 @@ module.exports = {
             //     collapseWhitespace: true
             // },
             hash: true,
-            excludeChunks: ["contact"], //排除不必要的chunk
+            excludeChunks: ["contact","table"], //排除不必要的chunk
             template: "./src/template/index.html", // Load a custom template (ejs by default)
             //filename: "./../index.html" //定义生成的html文件名和存放位置
         }),
@@ -92,6 +93,13 @@ module.exports = {
             chunks: ["contact","bootstrap"], //设定特定的chunk
             filename: "contact.html",
             template: "./src/template/contact.html"
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Filtering Table',
+            hash: true,
+            chunks: ["table","bootstrap"],
+            filename: "table.html",
+            template: "./src/template/table.html"
         }),
         new ExtractTextPlugin({
             filename: "./css/[name].css",
