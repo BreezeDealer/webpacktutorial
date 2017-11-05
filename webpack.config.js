@@ -23,6 +23,7 @@ module.exports = {
         app: "./src/js/index.js",
         contact: "./src/js/contact.js",
         table: "./src/js/table.js",
+        avengers: "./src/js/avengers.js",
         bootstrap: bootstrapConfig
     },
     output: {
@@ -83,7 +84,7 @@ module.exports = {
             //     collapseWhitespace: true
             // },
             hash: true,
-            excludeChunks: ["contact","table"], //排除不必要的chunk
+            excludeChunks: ["contact","table","avengers"], //排除不必要的chunk
             template: "./src/template/index.html", // Load a custom template (ejs by default)
             //filename: "./../index.html" //定义生成的html文件名和存放位置
         }),
@@ -100,6 +101,13 @@ module.exports = {
             chunks: ["table","bootstrap"],
             filename: "table.html",
             template: "./src/template/table.html"
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Collection of Avengers',
+            hash: true,
+            chunks: ["avengers","bootstrap"],
+            filename: "avengers.html",
+            template: "./src/template/avengers.html"
         }),
         new ExtractTextPlugin({
             filename: "./css/[name].css",

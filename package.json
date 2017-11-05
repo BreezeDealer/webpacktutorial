@@ -36,6 +36,7 @@
     "purify-css": "^1.2.5",
     "purifycss-webpack": "^0.7.0",
     "react": "^15.6.1",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^15.6.1",
     "resolve-url-loader": "^2.1.0",
     "rimraf": "^2.6.1",
@@ -44,5 +45,8 @@
     "url-loader": "^0.5.9",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "react-bootstrap": "^0.31.5"
   }
 }
