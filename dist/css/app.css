@@ -1,1 +1,86 @@
-body .place{padding:10px 5px;border:1px solid #dadada}body .deleted{color:#cd5c5c;text-decoration:line-through}body .brack{padding:10px 0 10px 41px;background:url(../images/register_success.png) no-repeat 0 0;text-align:left}body h2{color:teal}
+body .place {
+    padding: 10px 5px;
+    border: 1px solid #dadada
+}
+
+body .deleted {
+    color: #cd5c5c;
+    text-decoration: line-through
+}
+
+body .brack {
+    padding: 10px 0 10px 41px;
+    background: url(../images/register_success.png) no-repeat 0 0;
+    text-align: left
+}
+
+body h2 {
+    color: teal
+}
+
+.right-navigation {
+    position: fixed;
+    border-right: 6px solid #7a6e6e;
+    right: 0;
+    width: 0;
+    height: 100%
+}
+
+.right-nav-tabs {
+    position: absolute;
+    top: 50%;
+    left: -29px;
+    width: 35px;
+    margin-top: -61px
+}
+
+.right-nav-tab {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    background-color: #7a6e6e;
+    -webkit-border-radius: 3px 0 0 3px;
+    -moz-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px
+}
+
+.right-nav-tab a:hover {
+    text-decoration: none
+}
+
+.right-nav-tab .iconfont {
+    width: 34px;
+    margin-left: 1px;
+    position: relative;
+    z-index: 2;
+    line-height: 35px;
+    font-size: 25px;
+    display: block;
+    _display: block
+}
+
+.right-nav-tab .iconfont,
+.right-nav-tab .tab-text {
+    height: 35px;
+    color: #fff;
+    text-align: center;
+    background-color: #7a6e6e
+}
+
+.right-nav-tab .tab-text {
+    width: 70px;
+    font: normal 12px/35px microsoft Yahei;
+    position: absolute;
+    z-index: 1;
+    right: -36px;
+    top: 0;
+    -webkit-border-radius: 3px 0 0 3px;
+    -moz-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
+    -webkit-transition: transform .3s ease-in-out .1s;
+    -moz-transition: transform .3s ease-in-out .1s;
+    transition: transform .3s ease-in-out .1s;
+    _display: none
+}
