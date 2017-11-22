@@ -1,85 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
-import { Button, Modal } from 'react-bootstrap';
-var css = require("../scss/app.scss");
+import Collapsible from './Collapsible';
 
-const Images = [
-    {
-        avatar: "http://oyvypldwv.bkt.clouddn.com/thor.png"
-    }
-]
-
-class Example extends React.Component {
-    componentWillMount = () => {
-        this.setState({ showModal: false })
-    }
-    close = () => {
-        this.setState({ showModal: false })
-    }
-    open = () => {
-        this.setState({ showModal: true })
+class Expandable extends React.Component {
+    constructor(props) {
+        super(props);
     }
 
     render() {
         return (
             <div>
-                <p>点击按钮感受一下弹出的对话框。</p>
-                <Button
-                    bsStyle="primary"
-                    bsSize="large"
-                    onClick={ this.open }          >
-                    弹出示例对话框
-                </Button>
-
-                <Modal show={ this.state.showModal } onHide={ this.close }>
-                    <Modal.Header closeButton>
-                        <Modal.Title>对话框标题</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <h4>对话框的正文</h4>
-                        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button onClick={ this.close }>取消</Button>
-                    </Modal.Footer>
-                </Modal>
-            </div>
-        )
-    }
-}
-class ImgBox extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    handleModal = () => {
-        $("#myModal").modal();
-    }
-
-    render() {
-        const images = this.props.images;
-        return (
-            <div className="container">
-                {
-                    this.props.images.map((item, index) => {
-                        return (
-                            <img
-                                key={ index }
-                                onClick={ this.handleModal }
-                                src={ item.avatar }
-                                className="img-circle" />
-                        )
-
-                    })
-                }
-                <Example />
+                <header>
+                    <img src="" alt=""/>
+                    <h1>Collapsible Content</h1>
+                </header>
+                <div className="content">
+                    <div className="panel-group">
+                        <Collapsible title="Overview">
+                            <p>一枝红艳露凝香，雨云巫山枉断肠。</p>
+                        </Collapsible>
+                        <div className="panel">
+                            <div className="panel-heading">
+                                <h2>Reviews</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
 }
 
 ReactDOM.render(
-    <ImgBox images={ Images } />,
+    <Expandable />,
     document.getElementById("root")
 )
