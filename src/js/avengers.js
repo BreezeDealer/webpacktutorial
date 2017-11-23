@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Collapsible from './Collapsible';
+import image from '../images/icon.svg';
 
 class Expandable extends React.Component {
     constructor(props) {
