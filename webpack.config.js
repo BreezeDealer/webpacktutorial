@@ -56,7 +56,7 @@ module.exports = {
                 ]
             },            
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
+                test: /\.(jpe?g|png|gif)$/i,
                 use: [
                     //"file-loader?[path][name].[ext]?[hash:6]&outputPath=images/",
                     "file-loader?name=images/[name].[ext]",
