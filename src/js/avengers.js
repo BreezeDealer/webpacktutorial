@@ -18,31 +18,52 @@ class Expandable extends React.Component {
     }
 
     fetchData = () => {
-
+        fetch('https://randomuser.me/api?results=30&nat=uk,fr')
+        .then(response => response.json())
+        .then(parsedJSON => parsedJSON.map(user => (
+            {
+                name: `${user.name.first} ${user.name.last}`,
+                username: `${user.login.username}`,
+                location: `${location.street} ${location.city}`,
+                email: `${user.email}`,
+                
+            }
+        )))
+        .then(contacts => this.setState({
+            contacts,
+            isLoading: false
+        }))
+        .catch(error => console.log('parsing failed', error))
     }
 
     render() {
-        const {isLoading} = this.state;
+        const {isLoading, contacts} = this.state;
         return (
             <div>
                 <header>
                     <img src={image} alt=""/>
-                    <h1>Collapsible Content</h1>
+                    <h1>Fetching Data 
+                        <input 
+                            type="button" 
+                            className="btn btn-danger" 
+                            value="加载联系人" />
+                    </h1>
                 </header>
                 <div className={`content ${isLoading ? 'is-loading' : ''}`}>
                     <div className="panel-group">
-                        <Collapsible title="清平调·其二" author="李白">
-                            <p>一枝红艳露凝香，云雨巫山枉断肠。</p>
-                            <p>借问汉宫谁得似，可怜飞燕倚新妆。</p>
-                        </Collapsible>
-                        <Collapsible title="汉宫曲" author="徐凝">
-                            <p>水色帘前流玉霜，赵家飞燕侍昭阳。</p>
-                            <p>掌中舞罢箫声绝，三十六宫秋夜长。</p>
-                        </Collapsible>
-                        <Collapsible title="赵飞燕" author="张耒">
-                            <p>苦心膏沐不论赀，富贵人生各有时。</p>
-                            <p>直使中流畏仙去，君王何啻似婴儿。</p>
-                        </Collapsible>
+                        {
+                            !isLoading && contacts.length > 0 ? contacts.map(contact => {
+                                return (
+                                    <Collapsible title="清平调·其二" author="李白">
+                                        <p>一枝红艳露凝香，云雨巫山枉断肠。</p>
+                                        <p>借问汉宫谁得似，可怜飞燕倚新妆。</p>
+                                    </Collapsible>
+                                )
+                            }) : null
+                        }
+                    </div>
+                    <div className="loader">
+                        <div className="icon"></div>
                     </div>
                 </div>
             </div>

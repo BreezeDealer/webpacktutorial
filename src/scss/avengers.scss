@@ -18,6 +18,8 @@ header {
     padding: 20px;
     border-radius: 7px;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    min-height: 200px;
     .table {
         margin-bottom: 0;
         td, th {
@@ -131,11 +133,12 @@ header {
         transition: opacity 0.3s linear, visibility 0.3s linear;
         z-index: 3;
         .icon {
-            animation: spin 500ms infinite linear;
+            animation: spin 800ms infinite linear;
         }
     }
 }
 
 @keyframes spin {
-    
+    0% { transform: rotate(0); transform-origin: center center;}
+    100% {transform: rotate(360deg); transform-origin: center center;} 
 }
