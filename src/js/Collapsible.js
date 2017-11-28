@@ -18,7 +18,7 @@ export default class Collapsible extends React.Component {
     }
 
     render() {
-        const {title, author, children} = this.props;
+        const {avatar, name, username, location, email} = this.props.contact;
         const {isExpanded, height} = this.state;
         const currentHeight = isExpanded ? height : 0;
         return (
@@ -27,7 +27,7 @@ export default class Collapsible extends React.Component {
                 onClick={this.handleToggle}
             >
                 <div className="panel-heading">
-                    <h3>{title}</h3>
+                    <h3>{name}</h3>
                 </div>
                 <div className="panel-collapse" 
                     style={{height: currentHeight + 'px'}}
@@ -35,8 +35,10 @@ export default class Collapsible extends React.Component {
                     <div className="panel-body"
                         ref="inner"
                     >   
-                        <h4>{author}</h4>
-                        {children}
+                        <img src={avatar} alt="" className="img-circle"/>
+                        <p>用户名：{username}</p>
+                        <p>地址：{location}</p>
+                        <p>邮箱：{email}</p>
                     </div>
                 </div>
             </div>

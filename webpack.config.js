@@ -28,7 +28,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "./dist"),
-        filename: "./js/[name].bundle.js"
+        filename: "./js/[name].[hash].bundle.js"
     },
     module:{
         rules: [
