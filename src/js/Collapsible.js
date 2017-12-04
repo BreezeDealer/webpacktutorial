@@ -24,9 +24,8 @@ export default class Collapsible extends React.Component {
         return (
             <div 
                 className={`panel ${isExpanded ? 'is-expanded' : ''}`}
-                onClick={this.handleToggle}
             >
-                <div className="panel-heading">
+                <div className="panel-heading" onClick={this.handleToggle}>
                     <h3>{name}</h3>
                 </div>
                 <div className="panel-collapse" 

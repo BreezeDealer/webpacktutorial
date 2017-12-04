@@ -13,9 +13,25 @@ class Expandable extends React.Component {
         }
     }
 
-    componentDidMount() {
-        this.fetchData();
+    componentWillMount() {
+        localStorage.getItem && this.setState({
+            contacts: JSON.parse(localStorage.getItem('contacts')),
+            isLoading: false
+        })
     }
+
+    componentDidMount() {
+        if(!localStorage.getItem('contacts')) {  
+            this.fetchData();
+        } else {
+            console.log('Using data form localstorage!');
+        }
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        localStorage.setItem('contacts', JSON.stringify(nextState.contacts));
+        localStorage.setItem('contactsDate', Date.now());
+    } 
 
     fetchData = () => {
         fetch('https://randomuser.me/api?results=5&nat=us')
